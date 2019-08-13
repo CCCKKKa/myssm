@@ -68,6 +68,10 @@ public class StuController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value = "/mark")
+    public String mark(){
+        return "/student/mark";
+    }
     @RequestMapping(value = "/stuManage")
     public String stuManage(){
         return "/student/stuManage";
@@ -106,9 +110,11 @@ public class StuController {
         stu.setStumajor(stumajor);
         stu.setPhone(phone);
         stu.setMail(mail);
-        stuService.addStu(stu);//忘记写持久化了......
-        return "redirect:/user/regist";//重定向到学生列表
-    }
+        //忘记写持久化了......
+        stuService.addStu(stu);
+        //重定向到学生列表
+        return "redirect:/user/regist";
+}
 //删除学生
     @RequestMapping(value = "/delStu",method = RequestMethod.POST)
     public String delete(@RequestParam("stuid") int stuid){

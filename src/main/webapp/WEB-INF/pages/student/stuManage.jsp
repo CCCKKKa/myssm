@@ -23,7 +23,7 @@
             <a href="/stu/info" style="text-decoration: none;color: white">查询同学和教师</a>
         </button>
         <button type="button" class="btn btn-warning btn-lg btn-block" style="width: 300px;height: 300px;float: left;margin-left: 266px">
-            <a href="/tea/teaapply" style="text-decoration: none;color: white">评教系统</a>
+            <a href="/stu/mark" style="text-decoration: none;color: white">评教系统</a>
         </button>
         <button type="button" class="btn btn-primary btn-lg btn-block" style="width: 300px;height: 300px;float: right;margin-right: 266px">
             <a href="/user/welcome" style="text-decoration: none;color: white">注销系统</a>
