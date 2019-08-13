@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.TeaMapper">
+    <resultMap id="teaMap" type="com.pojo.Tea">
+        <id property="teid" column="teid"/>
+        <result property="tename" column="tename"/>
+        <result property="tepsd" column="tepsd"/>
+        <result property="major" column="major"/>
+        <result property="tephone" column="tephone"/>
+        <result property="temail" column="temail"/>
+        <association property="user" javaType="com.pojo.User">
+            <id property="id" column="id"/>
+            <result property="user_name" column="user_name"/>
+            <result property="password" column="password"/>
+        </association>
+    </resultMap>
+    <!--  添加教师-->
+    <insert id="addTea" parameterType="com.pojo.Tea">
+      <![CDATA[
+        INSERT  INTO teacher (tename,tepsd,major,tephone,temail) VALUES (#{tename},#{tepsd},#{major},#{tephone},#{temail})
+      ]]>
+    </insert>
+    <!--删除教师-->
+    <delete id="delTea" parameterType="int">
+         <![CDATA[
+          delete from teacher WHERE teid=#{teid}
+        ]]>
+    </delete>
+    <!--更新教师信息-->
+    <update id="updateTea" parameterType="com.pojo.Tea">
+        <![CDATA[
+          update teacher set tename=#{tename},tepsd=#{tepsd},major=#{major},tephone=#{tephone},temail=#{temail} where teid=#{teid}
+        ]]>
+    </update>
+
+    <update id="updateTeaPerson" parameterType="com.pojo.Tea">
+        <![CDATA[
+          update teacher set tename=#{tename},tepsd=#{tepsd},major=#{major},tephone=#{tephone},temail=#{temail} where teid=#{teid}
+        ]]>
+    </update>
+
+    <select id="getTeaById" resultType="com.pojo.Tea" parameterType="int">
+      <![CDATA[
+        SELECT * FROM teacher WHERE teid=#{teid}
+      ]]>
+    </select>
+
+    <select id="getTeaList" parameterType="String" resultMap="teaMap">
+        select * from teacher <where>
+        <if test="searchPhrase != null and  searchPhrase !='' ">
+            teid =#{searchPhrase}</if>
+    </where>
+    </select>
+
+    <delete id = "batchDeleteTea" parameterType = "java.util.List" >
+        delete from tea where teid in
+        <foreach collection="teaIdList" item="teid" index="no" open="(" separator="," close=")">
+            #{teid}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.StuMapper">
+
+    <resultMap id="stuMap" type="com.pojo.Stu">
+        <id property="stuid" column="stuid"/>
+        <result property="stuname" column="stuname"/>
+        <!--忘记写映射导致内容显示不出来-->
+        <result property="stupsd" column="stupsd"/>
+        <result property="stumajor" column="stumajor"/>
+        <result property="score" column="score"/>
+        <result property="phone" column="phone"/>
+        <result property="mail" column="mail"/>
+
+        <association property="user" javaType="com.pojo.User">
+            <id property="id" column="id"/>
+            <result property="user_name" column="user_name"/>
+            <result property="password" column="password"/>
+        </association>
+    </resultMap>
+
+    <insert id="addStu" useGeneratedKeys="true" keyProperty="id" parameterType="com.pojo.Stu">
+      <![CDATA[
+        INSERT  INTO stu (stuname,stupsd,stumajor,phone,mail,score,id) VALUES (#{stuname},#{stupsd},#{stumajor},#{phone},#{mail},#{score},1)
+      ]]>
+    </insert>
+
+    <delete id="delStu" parameterType="int">
+        <![CDATA[
+          delete from stu WHERE stuid=#{stuid}
+        ]]>
+    </delete>
+
+    <update id="updateStu" parameterType="com.pojo.Stu">
+        <![CDATA[
+          update stu set stuname=#{stuname},stupsd=#{stupsd},stumajor=#{stumajor},phone=#{phone},mail=#{mail},score=#{score} where stuid=#{stuid}
+        ]]>
+    </update>
+
+    <select id="getStuById" resultType="com.pojo.Stu" parameterType="int">
+      <![CDATA[
+        SELECT * FROM stu WHERE stuid=#{stuid}
+      ]]>
+    </select>
+<!--  刚开始的时候下面的方法写的sql语句就是select*from stu    指的是查找全部的学生信息，可是要加入条件查询，所以就写动态sql语句-->
+    <select id="getStuList" parameterType="String" resultMap="stuMap">
+        select * from stu <where>
+        <if test="searchPhrase != null and  searchPhrase !='' ">
+            stuid =#{searchPhrase}</if>
+    </where>
+    </select>
+
+    <select id="getStuByStuMajor" parameterType="String" resultMap="stuMap">
+      <![CDATA[
+        SELECT * FROM stu WHERE stumajor=#{stumajor }
+      ]]>
+    </select>
+
+    <delete id = "batchDeleteStu" parameterType = "java.util.List" >
+        delete from stu where stuid in
+        <foreach collection="stuIdList" item="stuid" index="no" open="(" separator="," close=")">
+            #{stuid}
+        </foreach>
+
+    </delete>
+
+</mapper>
