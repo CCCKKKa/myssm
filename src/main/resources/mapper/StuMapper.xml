@@ -58,6 +58,12 @@
       ]]>
     </select>
 
+    <select id="getTeaByStuMajor" parameterType="String" resultMap="stuMap">
+      <![CDATA[
+        SELECT * FROM teacher WHERE major=#{stumajor }
+      ]]>
+    </select>
+
     <delete id = "batchDeleteStu" parameterType = "java.util.List" >
         delete from stu where stuid in
         <foreach collection="stuIdList" item="stuid" index="no" open="(" separator="," close=")">

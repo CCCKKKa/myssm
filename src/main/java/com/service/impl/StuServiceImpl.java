@@ -66,6 +66,11 @@ public class StuServiceImpl implements StuService {
         return stu;
     }
 
+    public Stu getTeaByStuMajor(String stumajor) {
+        Stu stu=stuMapper.getTeaByStuMjor(stumajor);
+        return stu;
+    }
+
     public List<Stu> getPageStu(String searchPhrase,int pageNum, int pageSize) {
         PageHelper.startPage(pageNum,pageSize);//用于分页的核心代码
         List<Stu> list=stuMapper.getStuList(searchPhrase);//获取学生列表

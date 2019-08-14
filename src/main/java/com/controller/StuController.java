@@ -44,11 +44,11 @@ public class StuController {
      *      ┌─┐       ┌─┐
      *   ┌──┘ ┴───────┘ ┴──┐
      *   │                         │
-     *   │       ───           │
-     *   │  ─┬┘       └┬─  │
-     *   │                     │
-     *   │       ─┴─       │
-     *   │                  │
+     *   │       ───            │
+     *   │  ─┬┘       └┬─    │
+     *   │                         │
+     *   │       ─┴─            │
+     *   │                         │
      *   └───┐         ┌───┘
      *       │         │
      *       │         │
@@ -223,7 +223,6 @@ public class StuController {
         }
         return "/user/stuLogin";
     }
-
     //查询学生分数
     @RequestMapping(value = "/stuScore")
     public String stuScore(){
@@ -237,6 +236,13 @@ public class StuController {
         }else {
             return "/student/stuExam";
         }
+    }
+    @RequestMapping(value = "/getTea",method = RequestMethod.POST)
+    public String getTea(@RequestParam("stumajor") String stumajor, HttpSession httpSession){
+        Stu stu=(Stu)httpSession.getAttribute("stu");
+
+
+        return null;
     }
 
 
