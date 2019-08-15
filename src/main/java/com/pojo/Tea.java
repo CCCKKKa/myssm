@@ -8,6 +8,17 @@ public class Tea {
     private String tephone;
     private User user;
     private String major;
+    private String mark;
+
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
+
+
 
     public String getMajor() {
         return major;

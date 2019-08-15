@@ -240,8 +240,7 @@ public class StuController {
     @RequestMapping(value = "/getTea",method = RequestMethod.POST)
     public String getTea(@RequestParam("stumajor") String stumajor, HttpSession httpSession){
         Stu stu=(Stu)httpSession.getAttribute("stu");
-
-
+        
         return null;
     }
 

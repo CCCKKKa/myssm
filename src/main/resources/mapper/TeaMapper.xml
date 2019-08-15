@@ -10,6 +10,7 @@
         <result property="major" column="major"/>
         <result property="tephone" column="tephone"/>
         <result property="temail" column="temail"/>
+        <result property="mark" column="mark"/>
         <association property="user" javaType="com.pojo.User">
             <id property="id" column="id"/>
             <result property="user_name" column="user_name"/>
@@ -19,7 +20,7 @@
     <!--  添加教师-->
     <insert id="addTea" parameterType="com.pojo.Tea">
       <![CDATA[
-        INSERT  INTO teacher (tename,tepsd,major,tephone,temail) VALUES (#{tename},#{tepsd},#{major},#{tephone},#{temail})
+        INSERT  INTO teacher (tename,tepsd,major,tephone,temail,mark) VALUES (#{tename},#{tepsd},#{major},#{tephone},#{temail},#{mark})
       ]]>
     </insert>
     <!--删除教师-->
@@ -31,7 +32,7 @@
     <!--更新教师信息-->
     <update id="updateTea" parameterType="com.pojo.Tea">
         <![CDATA[
-          update teacher set tename=#{tename},tepsd=#{tepsd},major=#{major},tephone=#{tephone},temail=#{temail} where teid=#{teid}
+          update teacher set tename=#{tename},tepsd=#{tepsd},major=#{major},tephone=#{tephone},temail=#{temail},mark=#{mark} where teid=#{teid}
         ]]>
     </update>
 

@@ -88,13 +88,15 @@ public class TeaController {
                       @RequestParam("tepsd") String tepsd,
                       @RequestParam("major") String major,
                       @RequestParam("tephone") String tephone,
-                      @RequestParam("temail") String temail) {
+                      @RequestParam("temail") String temail,
+                      @RequestParam("mark") String mark) {
         Tea tea = new Tea();
         tea.setTename(tename);
         tea.setTepsd(tepsd);
         tea.setMajor(major);
         tea.setTephone(tephone);
         tea.setTemail(temail);
+        tea.setMark(mark);
         teaService.addTea(tea);//持久化
         return "redirect:teacher/teaList";
     }
@@ -114,7 +116,8 @@ public class TeaController {
                          @RequestParam("tepsd") String tepsd,
                          @RequestParam("major") String major,
                          @RequestParam("tephone") String tephone,
-                         @RequestParam("temail") String temail) {
+                         @RequestParam("temail") String temail,
+                         @RequestParam("mark")String mark) {
         Tea tea = new Tea();
         tea.setTeid(teid);
         tea.setTename(tename);
@@ -122,8 +125,29 @@ public class TeaController {
         tea.setMajor(major);
         tea.setTephone(tephone);
         tea.setTemail(temail);
+        tea.setMark(mark);
         teaService.updateTea(tea);
         return "redirect:teacher/teaList";//重定向到教师列表
+    }
+    @RequestMapping(value = "/updateTea2", method = RequestMethod.POST)
+    public String update2(@RequestParam("teid") int teid,
+                         @RequestParam("tename") String tename,
+                         @RequestParam("tepsd") String tepsd,
+                         @RequestParam("major") String major,
+                         @RequestParam("tephone") String tephone,
+                         @RequestParam("temail") String temail,
+                         @RequestParam("mark")String mark) {
+        Tea tea = new Tea();
+        tea.setTeid(teid);
+        tea.setTename(tename);
+        tea.setTepsd(tepsd);
+        tea.setMajor(major);
+        tea.setTephone(tephone);
+        tea.setTemail(temail);
+        tea.setMark(mark);
+        teaService.updateTea(tea);
+        //重定向到教师列表
+        return "/student/mark";
     }
 
     @RequestMapping(value = "getTeaInfo", produces = {"application/json;charset=UTF-8"})
@@ -205,7 +229,7 @@ public class TeaController {
     }
 //教师更新学生信息
     @RequestMapping(value = "/updateStu",method = RequestMethod.POST)
-    public String update(@RequestParam("stuid") int stuid,
+    public String update1(@RequestParam("stuid") int stuid,
                          @RequestParam("stuname") String stuname,
                          @RequestParam("stupsd")String stupsd,
                          @RequestParam("stumajor")String stumajor,

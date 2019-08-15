@@ -96,6 +96,7 @@
                     <th data-column-id="major" data-order="desc">major</th>
                     <th data-column-id="tephone">tephone</th>
                     <th data-column-id="temail">temail</th>
+                    <th data-column-id="mark">mark</th>
                     <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>
                 </tr>
                 </thead>
@@ -138,6 +139,7 @@
                     $("#major2").val(str.major);
                     $("#tephone2").val(str.tephone);
                     $("#temail2").val(str.temail);
+                    $("#mark2").val(str.mark);
                 });
             }).end().find(".command-delete").on("click", function(e)
             {
@@ -245,6 +247,10 @@
                         <label for="temail2">temail</label>
                         <input type="text" name="temail" class="form-control" id="temail2">
                     </div>
+                    <div class="form-group">
+                        <label for="mark2">mark</label>
+                        <input type="text" name="mark" class="form-control" id="mark2">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -290,6 +296,10 @@
                     <div class="form-group">
                         <label for="temail1">mail</label>
                         <input type="text" name="temail" class="form-control" id="temail1">
+                    </div>
+                    <div class="form-group">
+                        <label for="mark1">mark</label>
+                        <input type="text" name="mark" class="form-control" id="mark1">
                     </div>
                 </div>
                 <div class="modal-footer">
